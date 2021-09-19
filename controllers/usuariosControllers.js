@@ -3,7 +3,6 @@ const Usuario = require('../models/usuario')
 const bcryptjs = require ('bcryptjs')
 // 564650627484-9ss2jgh1m6h2rlooums1eq23kcrlh8f5.apps.googleusercontent.com
 
-
 const usuariosControllers = {
 
     iniciarSesion: (req, res) => {
