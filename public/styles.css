@@ -1,0 +1,665 @@
+/* estructura */
+html * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header, footer {
+    color: white;
+    width: 100%;
+    height: 15vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0vh 5vw;
+}
+
+header nav a {
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    margin-left: 1vw;
+}
+
+a.active {
+    color: rgb(224, 224, 224);
+    font-weight: 700;
+}
+
+footer {
+    justify-content: center;
+    height: 10vh;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    margin-right: 1rem;
+}
+
+/* home */
+.bodyHome, .bodyFinanzas, .bodylogueo, .bodyError{
+    background-image: url("https://i.postimg.cc/025Pymwd/fondohome.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.bodyError {
+    background-image: url("https://i.postimg.cc/3wbGx6n6/error404.png");
+}
+
+.errorContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-self: flex-start;
+    margin-left: 4rem;
+    width: 50vw;
+}
+
+.callToAction, .comofunciona {
+    align-self: flex-end;
+    width: 40%;
+    padding-right: 8vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.callToAction h2, .callToAction h4 {
+    color: white;
+    font-size: 2.7rem;
+}
+
+.callToAction h4 {
+    width: 80%;
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-align: center;
+}
+
+.botonCall {
+    margin-top: 2rem;
+    padding: 3%;
+    background-color: white;
+    color: rgb(255, 223, 75);
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 18px;
+    text-decoration: none;
+    transition: transform .2s;
+    box-shadow: 10px 10px 11px -3px rgba(0,0,0,0.03);
+}
+
+.botonCall:hover {
+    transform: scale(1.1);
+    box-shadow: 10px 10px 11px -3px rgba(0,0,0,0.07);
+}
+
+.nuevomes {
+    align-self: center;
+    margin-left: 1rem;
+}
+
+.reiniciar, .info, .botonEditar, .botonBorrar {
+    width: 50px;
+    height: 50px;
+}
+
+.botonEditar, .botonBorrar {
+    width: 28px;
+    height: 28px;
+}
+
+.botoneraEditar{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.botoneraEditar:hover {
+    opacity: 0.7;
+}
+
+.info {
+    margin-bottom: 1rem;
+}
+
+/* footer */
+.copy {
+    text-align: center;
+}
+
+/* inicio y registro */
+.bodylogueo {
+    background-image: url("https://i.postimg.cc/DzM08pw1/fondoslogueo.png");
+}
+
+.cajaLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cajaLogo>p {
+    font-weight: 400;
+}
+
+.formularioH1, .movH1 {
+    text-align: center;
+    font-weight: 700;
+    color: rgba(255,230,117,1);
+    text-shadow: 4px 2px 6px rgba(0,0,0,0.07);
+    margin-bottom: 1.9rem;
+}
+
+.movH1 {
+    margin-bottom: 1rem;
+}
+
+#formSesion, #formMov {
+    background-color: white;
+    padding: 25px 0;
+    box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    align-self: flex-end;
+    margin-right: 10rem;
+}
+
+.divForm {
+    width: 100%;
+    margin: auto;
+}
+
+form .grupo {
+    position: relative;
+    margin: 45px;
+}
+
+input {
+    background: none;
+    color: rgba(255,230,117,1);
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgb(163, 163, 163);
+}
+
+input:focus {
+    outline: none;
+    color: rgb(163, 163, 163);
+}
+
+input#fecha {
+    color: rgb(163, 163, 163);
+    
+}
+
+input#fecha:focus {
+    outline: none;
+    color: rgba(255,230,117,1);
+}
+
+label {
+    color: rgb(163, 163, 163);
+    font-size: 16px;
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    transition: 0.5s ease-in-out all;
+    pointer-events: none;
+}
+
+input:focus~label,
+input:valid~label
+{
+    top: -14px;
+    font-size: 12px;
+    color: rgba(255,230,117,1);
+}
+
+.barra {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.barraForm, .barraMov {
+    content: "";
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(254,241,180,1) 36%, rgba(255,230,117,1) 100%);
+}
+
+.barra::before {
+    content: "";
+    height: 2px;
+    width: 0%;
+    bottom: 0;
+    position: absolute;
+    background: linear-gradient(90deg, rgba(254,241,180,1) 36%, rgba(255,230,117,1) 100%);
+    transition: 0.3s ease width;
+    left: 0;
+}
+
+.sinDatos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+}
+
+.sindatosH4 {
+    color: rgb(133, 133, 133);
+    font-weight: 400;
+}
+
+input:focus~.barra::before {
+    width: 100%;
+}
+
+.botonForm{
+    font-family: 'Roboto', sans-serif;
+    background: rgba(255,230,117,1);
+    border: none;
+    display: block;
+    width: 80%;
+    margin: 0px 31px;
+    margin-bottom: 10px;
+    color: white;
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: center;
+    box-shadow: 10px 10px 11px -3px rgba(0,0,0,0.07);
+    transition: transform .2s;
+}
+
+.botonForm:hover{
+    transform: scale(1.1);
+}
+
+.pregunta {
+    font-size: 14px;
+    text-align: center;
+    color: rgb(133, 133, 133);
+}
+
+.pregunta a {
+    text-decoration: none;
+    margin-left: 0.5rem;
+    color: rgb(211, 175, 13);
+}
+
+.cerrarSesion {
+    color: rgba(255,230,117,1);
+    font-weight: 500;
+    font-size: 16px;
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 25px;
+    transition: transform .2s;
+}
+
+.cerrarSesion:hover {
+    color: white;
+    background-color: rgba(255,230,117,1);
+    box-shadow: 10px 10px 11px -3px rgba(0,0,0,0.07);
+}
+
+/* finanzas */
+.bodyFinanzas {
+    background-image: url("https://i.postimg.cc/XqT411sf/fondofinanzas2.png");
+    /* background-image: url("https://i.postimg.cc/CxRLMSVh/fondofinanzas.png"); */
+}
+
+#panel {
+    background-color: white;
+    padding: 30px 30px;
+    box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    align-self: flex-start;
+    margin-left: 18rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* width: 60vw; */
+}
+
+.balance, .enRojo, .ingresos, .gastos {
+    width: 25vw;
+    padding: 20px 20px;
+    margin: 0 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+    background: rgba(255,230,117,1);
+    transition: transform .2s;
+    color: white;
+    cursor: pointer;
+}
+
+.enRojo {
+    background: rgb(190, 167, 61);
+}
+
+.balance>div,
+.enRojo>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.balance:hover,
+.enRojo:hover,
+.ingresos:hover,
+.gastos:hover
+{
+    transform: scale(0.9);
+}
+
+.contenedorMov {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: flex-start;
+}
+
+.movimientosBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ingresos, .gastos {
+    width: 18vw;
+    margin-top: 2vw;
+    transition: transform .2s;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.ingresos {
+    background-color: rgb(114, 194, 114);
+}
+
+.gastos {
+    background-color: rgb(221, 101, 101);
+}
+
+.total {
+    margin-top: 2vw;
+    color: rgb(163, 163, 163);
+}
+
+.panelTitle {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titleh3 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: rgba(255,230,117,1);
+    text-shadow: 4px 2px 6px rgba(0,0,0,0.07);
+}
+
+.balanceH1 {
+    font-size: 1.5rem;
+}
+
+.fechaHora {
+    color: rgb(163, 163, 163);
+    text-align: center;
+}
+
+.error {
+    color: rgb(221, 101, 101);
+    text-align: center;
+    font-size: 14px;
+    padding-bottom: 0.5rem;
+}
+
+.sinError {
+    color: white;
+    text-align: center;
+}
+
+/* movimientos */
+.mainIngresos {
+    display: flex;
+    flex-direction: row;
+}
+
+.bodyMov {
+    /* background-image: url("https://i.postimg.cc/mrDStMtv/fondoamarillo.png"); */
+    background: radial-gradient(circle, rgba(254,241,180,1) 0%, rgba(255,231,121,1) 87%);
+}
+
+#formMov {
+    align-self: center;
+    margin-right: 0rem;
+}
+
+.panelMov {
+    background-color: white;
+    padding: 35px 20px;
+    box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    align-self: center;
+    margin-left: 1rem;
+    width: 40vw;
+    /* height: 75.1vh; */
+}
+
+.grupoMov {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0.8vw 0;
+    width: 100%;
+}
+
+.descripcion {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex: 1;
+}
+
+.descripcion>p {
+    color: rgb(163, 163, 163);
+}
+
+.descripcion>p:hover {
+    color: rgb(94, 94, 94);
+}
+
+.movContenedor {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: -1;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    height: 52vh;
+    width: 100%;
+    padding: 2%;
+}
+
+.movContenedor::-webkit-scrollbar{
+    width: 0.5rem;
+}
+
+.movContenedor::-webkit-scrollbar-thumb{
+    background-color: rgb(245, 216, 90);
+    border-radius: 8px;
+}
+
+/* editar */
+#formEditado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+}
+
+.grupoEditar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0.8vw 0;
+    width: 100%;
+    height: 80%;
+}
+
+.descripcionEditar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: space-around;
+    width: 55%;
+    height: 80%;
+}
+
+.botonEdit {
+    margin: 0px 0px;
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 40px;
+    border: none;
+    transition: transform .2s;
+}
+
+.botonEdit:hover{
+    transform: scale(1.3);
+
+}
+
+/* explicaion */
+.comofunciona {
+    justify-content: center;
+    align-items: centers;
+    align-self: center;
+    padding-right: 0;
+}
+
+.expContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    margin-bottom: 3rem;
+}
+
+.bodyExplicacion, .bodyMov {
+    background: radial-gradient(circle, rgba(255,230,114,1) 0%, rgba(255,224,81,1) 87%);
+}
+
+.pasos {
+    width: 60vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.grupoPasos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    transition: transform .2s;
+}
+
+.grupoPasos>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.numero {
+    width: 40px;
+    height: 40px;
+}
+
+.grupoPasos:hover {
+    transform: scale(1.1);
+}
+
+.grupoPasos>p, .grupoPasos>h4 {
+    color: rgb(128, 126, 126);
+    text-align: center;
+    font-size: 1rem;
+}
+
+.grupoPasos>h4 {
+    font-size: 1rem;
+    color: white;
+    font-weight: 500;
+}
+
+.explicacionH4, .errorH4 {
+    color: white;
+    width: 80%;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+}
+
+.errorH4 {
+    font-size: 18px;
+    text-align: center;
+}
+
+.botonesError {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-self: flex-start;
+    width: 22vw;
+    margin-left: 15rem;
+}
+
+.explicacionTitulo, .errorTitulo {
+    color: white;
+    font-size: 2.5rem;
+}
+
+.errorTitulo {
+    margin-bottom: 1rem;
+}
