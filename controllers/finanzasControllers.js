@@ -1,6 +1,7 @@
 const path = require('path')
 const Ingreso = require('../models/ingresos')
 const Gasto = require('../models/gastos')
+const Ahorro = require('../models/ahorros')
 
 const finanzasControllers = {
 
@@ -32,6 +33,19 @@ const finanzasControllers = {
         }
     },
 
+    recomendacion: (req, res) => {
+        if(req.session.loggedIn) {
+            return res.render('recomendacion', {
+                title: 'Regla 50/30/20',
+                loggedIn: req.session.loggedIn,
+                nombre: req.session.nombre
+            })
+        }
+        res.render('error404', {
+            title: 'error404'
+        })
+    },
+
     error404: (req, res) => {
         res.render('error404', {
             title: 'error404'
@@ -41,6 +55,7 @@ const finanzasControllers = {
     finanzas: async (req, res) => {
         let ingresos = await Ingreso.find({usuarioId: req.session.usuarioId})
         let gastos = await Gasto.find({usuarioId: req.session.usuarioId})
+        let ahorros = await Ahorro.find({usuarioId: req.session.usuarioId})
         if(req.session.loggedIn) {
             return res.render('misFinanzas', {
                 title: 'Mis finanzas',
@@ -51,6 +66,7 @@ const finanzasControllers = {
                 usuario: req.session.usuario,
                 ingresos,
                 gastos,
+                ahorros,
             })
         }
         res.render('error404', {
@@ -89,6 +105,7 @@ const finanzasControllers = {
     registrarIngreso: async (req, res) => {
         if(!req.body.id) {
             let nuevoIngreso = new Ingreso({
+                categoria: req.body.categoria,
                 descripcion: req.body.descripcion,
                 monto: req.body.monto,
                 fecha: req.body.fecha,
@@ -96,6 +113,7 @@ const finanzasControllers = {
             })
             try {
                 await nuevoIngreso.save()
+                console.log(nuevoIngreso)
                 res.redirect('/ingresos')
             } catch (e) {
                 res.render('ingresos', {
@@ -110,8 +128,8 @@ const finanzasControllers = {
             }
         } else {
             try {
-                const {descripcion, monto, fecha, id} = req.body
-                let ingresoEditado = await Ingreso.findOneAndUpdate({_id: id}, {descripcion, monto, fecha} ,{new: true})
+                const {categoria, descripcion, monto, fecha, id} = req.body
+                let ingresoEditado = await Ingreso.findOneAndUpdate({_id: id}, {categoria, descripcion, monto, fecha} ,{new: true})
                 console.log(ingresoEditado)
                 res.redirect('/ingresos')
             } catch(e) {
@@ -190,6 +208,7 @@ const finanzasControllers = {
     registrarGasto: async (req, res) => {
         if(!req.body.id) {
             let nuevoGasto = new Gasto({
+                tipo: req.body.tipo,
                 descripcion: req.body.descripcion,
                 monto: req.body.monto,
                 fecha: req.body.fecha,
@@ -211,8 +230,8 @@ const finanzasControllers = {
             }
         } else {
             try {
-                const {descripcion, monto, fecha, id} = req.body
-                let gastoEditado = await Gasto.findOneAndUpdate({_id: id}, {descripcion, monto, fecha} ,{new: true})
+                const {tipo, descripcion, monto, fecha, id} = req.body
+                let gastoEditado = await Gasto.findOneAndUpdate({_id: id}, {tipo, descripcion, monto, fecha} ,{new: true})
                 console.log(gastoEditado)
                 res.redirect('/gastos')
             } catch(e) {
@@ -258,10 +277,112 @@ const finanzasControllers = {
         }
     },
 
+    ahorros: async (req, res) => {
+        if(req.session.loggedIn) {
+            try {
+                const ahorros = await Ahorro.find({usuarioId: req.session.usuarioId})
+                console.log(ahorros)
+                res.render('ahorros', {
+                title: 'Panel ahorros',
+                ahorros,
+                error: null,
+                editar: false,
+                loggedIn: req.session.loggedIn,
+                usuarioId: req.session.usuarioId,
+                nombre: req.session.nombre || 'desconocido',
+                email: req.session.email,
+                usuario: req.session.usuario,
+            })
+            } catch(e) {
+                console.log(e)
+                res.render('error404', {
+                    title: 'error404'
+                })
+            }
+        } else {
+            res.render('error404', {
+                title: 'error404'
+            })
+        }
+    },
+
+    registrarAhorro: async (req, res) => {
+        if(!req.body.id) {
+            let nuevoAhorro = new Ahorro({
+                categoria: req.body.categoria,
+                descripcion: req.body.descripcion,
+                monto: req.body.monto,
+                fecha: req.body.fecha,
+                usuarioId: req.body.usuarioId,
+            })
+            try {
+                await nuevoAhorro.save()
+                res.redirect('/ahorros')
+            } catch (e) {
+                res.render('ahorros', {
+                    title: 'Panel ahorros',
+                    error: e,
+                    loggedIn: req.session.loggedIn,
+                    usuarioId: req.session.usuarioId,
+                    nombre: req.session.nombre || 'desconocido',
+                    email: req.session.email,
+                    usuario: req.session.usuario,
+                })
+            }
+        } else {
+            try {
+                const {categoria, descripcion, monto, fecha, id} = req.body
+                let ahorroEditado = await Ahorro.findOneAndUpdate({_id: id}, {categoria, descripcion, monto, fecha} ,{new: true})
+                console.log(ahorroEditado)
+                res.redirect('/ahorros')
+            } catch(e) {
+                console.log(e)
+                res.render('error404', {
+                    title: 'error404'
+                })
+            }
+        }
+    },
+
+    borrarAhorro: async (req, res) => {
+        try {
+            await Ahorro.findOneAndDelete({_id: req.params.id})
+            res.redirect('/ahorros')
+        } catch(e) {
+            console.log(e)
+            res.render('error404', {
+                title: 'error404'
+            })
+        }
+    },
+
+    editarAhorro: async (req, res) => {
+        try {
+            let ahorro = await Ahorro.findOne({_id: req.params.id})
+            res.render('ahorros', {
+                title: 'Panel ahorros',
+                error: null,
+                editar: true,
+                ahorro,
+                loggedIn: req.session.loggedIn,
+                usuarioId: req.session.usuarioId,
+                nombre: req.session.nombre || 'desconocido',
+                email: req.session.email,
+                usuario: req.session.usuario,
+            })
+        } catch(e) {
+            console.log(e)
+            res.render('error404', {
+                title: 'error404'
+            })
+        }
+    },
+
     nuevoMes: async (req, res) => {
         if(req.session.loggedIn) {
             await Ingreso.findOneAndDelete({usuarioId: req.session.usuarioId})
             await Gasto.findOneAndDelete({usuarioId: req.session.usuarioId})
+            await Ahorro.findOneAndDelete({usuarioId: req.session.usuarioId})
             res.render('misFinanzas', {
                 title: 'Mis finanzas',
                 loggedIn: req.session.loggedIn,
@@ -271,6 +392,7 @@ const finanzasControllers = {
                 usuario: req.session.usuario,
                 ingresos: null,
                 gastos: null,
+                ahorros: null,
             })
             return redirect('/misfinanzas')
         }
