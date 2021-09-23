@@ -56,6 +56,10 @@ const finanzasControllers = {
         let ingresos = await Ingreso.find({usuarioId: req.session.usuarioId})
         let gastos = await Gasto.find({usuarioId: req.session.usuarioId})
         let ahorros = await Ahorro.find({usuarioId: req.session.usuarioId})
+        let fijos = gastos.filter((gasto) => gasto.tipo === "Fijo")
+        let variables = gastos.filter((gasto) => gasto.tipo === "Variable")
+        console.log(fijos + "estos son los fijos")
+
         if(req.session.loggedIn) {
             return res.render('misFinanzas', {
                 title: 'Mis finanzas',
@@ -67,6 +71,8 @@ const finanzasControllers = {
                 ingresos,
                 gastos,
                 ahorros,
+                fijos,
+                variables,
             })
         }
         res.render('error404', {
@@ -393,6 +399,8 @@ const finanzasControllers = {
                 ingresos: null,
                 gastos: null,
                 ahorros: null,
+                fijos: null,
+                variables: null,
             })
             return redirect('/misfinanzas')
         }

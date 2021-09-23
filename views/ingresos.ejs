@@ -13,10 +13,10 @@
                     <h1 class="tituloIngresos">Ingresos</h1>
                     <div class="grupoCategoria">
                         <p>Categoria:</p>
-                        <select name="Categoria" id="Categoria" required>
+                        <select name="categoria" id="categoria" required>
                             <option value="Sueldo">Sueldo</option>
                             <option value="Aguinaldo">Aguinaldo</option>
-                            <option value="Inveriones">Inveriones</option>
+                            <option value="Inversiones">Inversiones</option>
                             <option value="Ingresos">Ingresos extra</option>
                             <option value="Freelos">Freelos</option>
                         </select>
@@ -80,12 +80,12 @@
                             <div class="descripcionEditar">
                                 <div class="grupoCategoria">
                                     <p>Categoria:</p>
-                                    <select name="Categoria" id="Categoria" required>
-                                        <option>Sueldo</option>
-                                        <option>Aguinaldo</option>
-                                        <option>Inveriones</option>
-                                        <option>Ingresos extra</option>
-                                        <option>Freelos</option>
+                                    <select name="categoria" id="categoria" required>
+                                        <option value="Sueldo">Sueldo</option>
+                                        <option value="Aguinaldo">Aguinaldo</option>
+                                        <option value="Inversiones">Inversiones</option>
+                                        <option value="Ingresos extra">Ingresos extra</option>
+                                        <option value="Freelos">Freelos</option>
                                     </select>
                                 </div>
                                 <input type="text" name="descripcion" id="descripcion" autoComplete="off" value="<%= ingreso.descripcion %>" required />
@@ -103,7 +103,7 @@
                     </form>
                 <% } %>
             </div>
-            <% if(ingresos.length > 0){ %>
+            <% if(!editar && ingresos.length > 0){ %>
                 <input class="exportar" type="button" onclick="tableToExcel('tablaMov', 'Detalle de ingresos')" value="Exportar detalle">
             <% } %>
         </div>

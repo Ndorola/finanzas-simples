@@ -100,7 +100,7 @@
                     </form>
                 <% } %>
             </div>
-            <% if(gastos.length > 0){ %>
+            <% if(!editar && gastos.length > 0){ %>
                 <input class="exportar" type="button" onclick="tableToExcel('tablaMov', 'Detalle de gastos')" value="Exportar detalle">
             <% } %>
         </div>

@@ -1,8 +1,15 @@
 <%- include('./partials/head.ejs') %>
 <% let totalIngresos = ingresos ? ingresos.reduce((sum, value) => ( sum + value.monto ), 0) : 0 %>
 <% let totalGastos = gastos ? gastos.reduce((sum, value) => ( sum + value.monto ), 0) : 0 %>
+<% let totalFijos = fijos ? fijos.reduce((sum, value) => ( sum + value.monto ), 0) : 0 %>
+<% let totalVariables = variables ? variables.reduce((sum, value) => ( sum + value.monto ), 0) : 0 %>
 <% let totalAhorros = ahorros ? ahorros.reduce((sum, value) => ( sum + value.monto ), 0) : 0 %>
-<% let balance = totalIngresos - totalGastos %>
+
+<% let balance = totalIngresos - totalGastos - totalAhorros %>
+
+<% let porcentajeFijos = (totalFijos / totalIngresos) * 100 %>
+<% let porcentajeVariables = (totalVariables / totalIngresos) * 100 %>
+<% let porcentajeAhorros = (totalAhorros / totalIngresos) * 100 %>
 
 <body class="bodyFinanzas">
     <header>
@@ -42,6 +49,9 @@
                 </div>
             </div>
             <div class="informe">
+                <p>gastos fijos: <%= porcentajeFijos %></p>
+                <p>gastos fijos: <%= porcentajeVariables %></p>
+                <p>gastos fijos: <%= porcentajeAhorros %></p>
                 <p class="callFinanzas">¿Querés conocer cómo organizar mejor tus gastos mensuales? <a class="ah" href="/recomendacion">Hacé click aquí!</a></p>
             </div>  
         </div>

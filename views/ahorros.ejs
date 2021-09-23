@@ -13,12 +13,12 @@
                     <h1 class="formularioH1">Ahorros</h1>
                     <div class="grupoCategoria">
                         <p>Categoria:</p>
-                        <select name="Categoria" id="Categoria" required>
-                            <option>Viaje</option>
-                            <option>Casa</option>
-                            <option>Auto</option>
-                            <option>Fondo S.O.S</option>
-                            <option>Otro</option>
+                        <select name="categoria" id="categoria" required>
+                            <option value="Viaje">Viaje</option>
+                            <option value="Casa">Casa</option>
+                            <option value="Auto">Auto</option>
+                            <option value="S.O.S">S.O.S</option>
+                            <option value="Otro">Otro</option>
                         </select>
                     </div>
                     <div class="grupo">
@@ -80,12 +80,12 @@
                             <div class="descripcionEditar">
                                 <div class="grupoCategoria">
                                     <p>Categoria:</p>
-                                    <select name="Categoria" id="Categoria" required>
-                                        <option>Viaje</option>
-                                        <option>Casa</option>
-                                        <option>Auto</option>
-                                        <option>Fondo S.O.S</option>
-                                        <option>Otro</option>
+                                    <select name="categoria" id="categoria" required>
+                                        <option value="Viaje">Viaje</option>
+                                        <option value="Casa">Casa</option>
+                                        <option value="Auto">Auto</option>
+                                        <option value="S.O.S">S.O.S</option>
+                                        <option value="Otro">Otro</option>
                                     </select>
                                 </div>
                                 <input type="text" name="descripcion" id="descripcion" autoComplete="off" value="<%= ahorro.descripcion %>" required />
@@ -103,7 +103,7 @@
                     </form>
                 <% } %>
             </div>
-            <% if(ahorros.length > 0){ %>
+            <% if(!editar && ahorros.length > 0){ %>
                 <input class="exportar" type="button" onclick="tableToExcel('tablaMov', 'Detalle de ahorros')" value="Exportar detalle">
             <% } %>
         </div>
