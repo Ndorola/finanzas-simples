@@ -82,7 +82,7 @@ const usuariosControllers = {
                 req.session.nombre = agregarUsuario.nombre,
                 req.session.email = agregarUsuario.email,
                 req.session.usuario = agregarUsuario
-                return res.redirect('/misfinanzas')
+                return res.redirect('/recomendacion')
             } else {
                 res.render('registrarse', {
                     title: 'Registrarse',

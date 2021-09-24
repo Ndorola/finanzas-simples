@@ -386,9 +386,10 @@ const finanzasControllers = {
 
     nuevoMes: async (req, res) => {
         if(req.session.loggedIn) {
-            await Ingreso.findOneAndDelete({usuarioId: req.session.usuarioId})
-            await Gasto.findOneAndDelete({usuarioId: req.session.usuarioId})
-            await Ahorro.findOneAndDelete({usuarioId: req.session.usuarioId})
+            await db.Ingreso.deleteMany({usuarioId: req.session.usuarioId})
+            // await Itinerary.updateMany({}, {...req.body}, {new: true})
+            await db.Gasto.deleteMany({usuarioId: req.session.usuarioId})
+            await db.Ahorro.deleteMany({usuarioId: req.session.usuarioId})
             res.render('misFinanzas', {
                 title: 'Mis finanzas',
                 loggedIn: req.session.loggedIn,

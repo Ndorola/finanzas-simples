@@ -1,15 +1,15 @@
 <%- include('./partials/head.ejs') %>
-<% let totalIngresos = ingresos ? ingresos.reduce((sum, value) => ( sum + value.monto ), 0) : 0 %>
-<% let totalGastos = gastos ? gastos.reduce((sum, value) => ( sum + value.monto ), 0) : 0 %>
-<% let totalFijos = fijos ? fijos.reduce((sum, value) => ( sum + value.monto ), 0) : 0 %>
-<% let totalVariables = variables ? variables.reduce((sum, value) => ( sum + value.monto ), 0) : 0 %>
-<% let totalAhorros = ahorros ? ahorros.reduce((sum, value) => ( sum + value.monto ), 0) : 0 %>
+<% var totalIngresos = ingresos ? ingresos.reduce((sum, value) => ( sum + value.monto ), 0) : 0 %>
+<% var totalGastos = gastos ? gastos.reduce((sum, value) => ( sum + value.monto ), 0) : 0 %>
+<% var totalFijos = fijos ? fijos.reduce((sum, value) => ( sum + value.monto ), 0) : 0 %>
+<% var totalVariables = variables ? variables.reduce((sum, value) => ( sum + value.monto ), 0) : 0 %>
+<% var totalAhorros = ahorros ? ahorros.reduce((sum, value) => ( sum + value.monto ), 0) : 0 %>
 
-<% let balance = totalIngresos - totalGastos - totalAhorros %>
+<% var balance = totalIngresos - totalGastos - totalAhorros %>
 
-<% let porcentajeFijos = (totalFijos / totalIngresos) * 100 %>
-<% let porcentajeVariables = (totalVariables / totalIngresos) * 100 %>
-<% let porcentajeAhorros = (totalAhorros / totalIngresos) * 100 %>
+<% var porcentajeFijos = (totalFijos / totalIngresos) * 100 %>
+<% var porcentajeVariables = (totalVariables / totalIngresos) * 100 %>
+<% var porcentajeAhorros = (totalAhorros / totalIngresos) * 100 %>
 
 <body class="bodyFinanzas">
     <header>
@@ -49,13 +49,54 @@
                 </div>
             </div>
             <div class="informe">
-                <p>gastos fijos: <%= porcentajeFijos %></p>
+                <h2 class="proximamente">Proximamente informe mensual</h2>
+                <canvas id="myChart" width="300" height="300">
+                </canvas>
+                <!-- <p>gastos fijos: <%= porcentajeFijos %></p>
                 <p>gastos fijos: <%= porcentajeVariables %></p>
-                <p>gastos fijos: <%= porcentajeAhorros %></p>
-                <p class="callFinanzas">¿Querés conocer cómo organizar mejor tus gastos mensuales? <a class="ah" href="/recomendacion">Hacé click aquí!</a></p>
+                <p>gastos fijos: <%= porcentajeAhorros %></p> -->
+                <p class="callFinanzas2">¿Querés conocer cómo organizar mejor tus gastos mensuales? <a class="ah" href="/recomendacion">Hacé click aquí!</a></p>
             </div>  
         </div>
     </main>
     <%- include('./partials/footer.ejs') %>
+
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels:['Gastos fijos', 'Gastos variables', 'Ahorros'],
+                datasets:[{
+                    label:'Resumen mensual',
+                    data: [50,30,20],
+                    backgroundColor:[
+                        'rgba(210, 98, 103,2)',
+                        'rgba(224, 181, 181,2)',
+                        'rgba(235, 177, 30,2)'
+                    ],
+                }]
+            },
+            options: {
+            responsive: false,
+            plugins: {
+            legend: {
+                position: 'top',
+            },
+            // title: {
+            //     display: true,
+            //     text: ''
+            // }
+            }
+        },
+        })
+
+        function actualizarInforme() {
+            Chart.data.datasets[0].data = [30, 40, 10]
+
+            Chart.update()
+        }
+    </script>
+
 </body>
 </html>
