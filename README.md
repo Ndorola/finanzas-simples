@@ -1,4 +1,4 @@
-# misFinanzas 💰
+<!-- # misFinanzas 💰
 Version WEB proyecto misFinanzas.
 
 # Trabajo realizado
@@ -30,4 +30,4 @@ npm start
 
 # Expresiones de Gratitud 🤗
 Se agradece a Fernando Biaus por la mentoría y la dedicación. <br/>
-También a Mindhub por la oportunidad de crecer como developers.
+También a Mindhub por la oportunidad de crecer como developers. -->
