@@ -6,14 +6,13 @@ Una app desarrollada en una semana durante mi transcurso por el bootcamp de Mind
 <br></br>
 
 <div align='center'>
-  <img src="https://media.giphy.com/media/Ct3oLMMbO16yKxa4bg/giphy.gif" width="650"/>
+  <img src="https://media.giphy.com/media/sAy19HWC2yKBmsejTk/giphy.gif" width="650"/>
 </div>
 
 <br></br>
 >- A este mismo proyecto se le reemplazó la base de datos utilizada por MySQL y se adecuó el código para el funcionamiento de la app. El respositorio lo pueden encontrar encontrar en el siguiente link : [FS - Version SQL](https://github.com/Ndorola/finanzasSimples-SQL) 
 >- Para poder ver el demo del proyecto realizado puedes ingresar al siguiente link : [FS - Web App](https://finanzas-simples.herokuapp.com/)
 
-<!-- ![FS](https://media.giphy.com/media/Ct3oLMMbO16yKxa4bg/giphy.gif) -->
 
 ## Empezamos! 🚀
 
