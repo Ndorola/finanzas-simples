@@ -1,4 +1,4 @@
-## Finanzas Simples 💰
+<!-- ## Finanzas Simples 💰
 Version WEB proyecto misFinanzas.
 
 ## Trabajo realizado
@@ -31,4 +31,4 @@ Mongoose - Modelado de objetos (Object Document Mapper (ODM))
 Se agradece a Fernando Biaus por la mentoría y dedicación.
 También a Mindhub por la oportunidad de crecer como developers.
 
-Desarrollado por Nicole Dorola ✨
+Desarrollado por Nicole Dorola ✨ -->
